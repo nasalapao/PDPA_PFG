@@ -6,11 +6,10 @@
     <ul class="links">
         <li><a href="index.aspx">Home</a></li>
         <li><a href="privacy.aspx">Privacy</a></li>
-        <li><a href="pdpaform.aspx">Services</a></li>
+        <li><a href="LoadData.aspx">Services</a></li>
 
          <% 
             if (valueFromSession == "") {
-                
                 Response.Write(" <li><a href='login.aspx'>Login</a></li>");
             }else
             {
@@ -44,7 +43,7 @@
     <div class="dropdown_menu">
         <li><a href="index.aspx">Home</a></li>
         <li><a href="privacy.aspx">Privacy</a></li>
-        <li><a href="pdpaform.aspx">Services</a></li>
+        <li><a href="LoadData.aspx">Services</a></li>
 
         <% 
             if (valueFromSession == "") {

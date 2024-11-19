@@ -12,8 +12,11 @@ namespace WebFormApp
 {
     public partial class Report : System.Web.UI.Page
     {
+
         private dbConnection db = new dbConnection();
         StringBuilder sql = new StringBuilder();
+
+        string taxid = "", pdaccdt = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,82 +27,118 @@ namespace WebFormApp
 
         private void ShowReport()
         {
+            try
+            {
+                //reset
+                ReportViewer1.Reset();
 
-            //reset
-            ReportViewer1.Reset();
+                // data source
 
-            // data source
+                DataTable dt = GetData();
 
-            DataTable dt = GetData();
-            ReportDataSource rds = new ReportDataSource("DataSet1", dt);
+                if (db.isError == false && db.isHasRow)
+                {
+                    ReportDataSource rds = new ReportDataSource("DataSet1", dt);
+                    ReportViewer1.LocalReport.DataSources.Add(rds);
+                    ReportViewer1.LocalReport.ReportPath = "ITS008_CheckList.rdlc";
+                    ReportViewer1.LocalReport.Refresh();
+                }
+                else
+                {
+                    ShowError("ไม่พบข้อมูล");
+                }
 
-            ReportViewer1.LocalReport.DataSources.Add(rds);
 
-            // path
-            ReportViewer1.LocalReport.ReportPath = "ITS008_CheckList.rdlc";
-
-
-            ReportViewer1.LocalReport.Refresh();
+            }
+            catch (Exception ex)
+            {
+                ShowError("ShowReport error: " + ex.Message);
+               
+            }
 
 
         }
 
         private DataTable GetData()
         {
-            DataTable dt = new DataTable();
 
-            sql.Clear();
+            try
+            {
+                DataTable dt = new DataTable();
 
-            sql.Append("SELECT pdtaxid, pdrfcode, pdprefix, pdtaxname, ");
-            sql.Append("pdtaxaddr, pdcuraddr, pdworkaddr, ");
-            sql.Append("CASE WHEN pdsexid <> '' THEN CASE WHEN pdsexid = '1' THEN 'Male' ELSE 'Female' END END AS pdsexid, ");
-            sql.Append("pdbddt, pdphone, pdemail, pdlineid, pdbanknm, pdbankno, ");
-            sql.Append("CASE WHEN pdtypedoc <> '' THEN CASE WHEN pdtypedoc = '1' THEN 'ยินยอม' ELSE 'ไม่ยินยอม' END END AS pdtypedoc, pdaccdt, ");
-            sql.Append("CASE WHEN pdtypedoc2 <> '' THEN CASE WHEN pdtypedoc2 = '1' THEN 'ยินยอม' ELSE 'ไม่ยินยอม' END END AS pdtypedoc2, pdaccdt2, ");
-            sql.Append("CASE WHEN pdmthdoc <> '' THEN CASE WHEN pdmthdoc = '1' THEN 'ผ่าน Web' ELSE 'เอกสาร แบบฟอร์ม' END END AS pdmthdoc ");
-            sql.Append("FROM ITPROD.PDPAFILE ");
+                sql.Clear();
 
-            //where 
+                sql.Append("SELECT pdtaxid, pdrfcode, pdprefix, pdtaxname, ");
+                sql.Append("pdtaxaddr, pdcuraddr, pdworkaddr, ");
+                sql.Append("CASE WHEN pdsexid <> '' THEN CASE WHEN pdsexid = '1' THEN 'Male' ELSE 'Female' END END AS pdsexid, ");
+                sql.Append("pdbddt, pdphone, pdemail, pdlineid, pdbanknm, pdbankno, ");
+                sql.Append("CASE WHEN pdtypedoc <> '' THEN CASE WHEN pdtypedoc = '1' THEN 'ยินยอม' ELSE 'ไม่ยินยอม' END END AS pdtypedoc, pdaccdt, ");
+                sql.Append("CASE WHEN pdtypedoc2 <> '' THEN CASE WHEN pdtypedoc2 = '1' THEN 'ยินยอม' ELSE 'ไม่ยินยอม' END END AS pdtypedoc2, pdaccdt2, ");
+                sql.Append("CASE WHEN pdmthdoc <> '' THEN CASE WHEN pdmthdoc = '1' THEN 'ผ่าน Web' ELSE 'เอกสาร แบบฟอร์ม' END END AS pdmthdoc ");
+                sql.Append("FROM ITPROD.PDPAFILE ");
 
-            ////18-11-2024
+                //where 
 
-            //where 
+                //// taxid 
+                if (string.IsNullOrEmpty(taxid) == false)
+                {
+                    sql.Append(string.Format(" WHERE PDTAXID = '{0}' ", taxid));
+                    //where 
+                }
+                else
+                {
+                    sql.Append(" WHERE  1 = 1 ");
 
+                }
 
+                //date
+                if (string.IsNullOrEmpty(pdaccdt) == false)
+                {
 
+                    sql.Append(string.Format("AND  PDACCDT = '{0}'", pdaccdt));
 
+                }
+                // type
+                if (!ddlTYPEDOC.Text.Equals("3"))
+                {
+                    sql.Append(string.Format("AND  PDTYPEDOC = '{0}'", ddlTYPEDOC.Text));
+                }
 
+                sql.Append(" ORDER BY PDRGDT DESC , PDRGTM desc");
 
-            sql.Append(" ORDER BY PDRGDT DESC , PDRGTM desc");
-           
+                dt = db.ExecuteDb2Query(sql.ToString());
 
-
-            
-            //  "    WHERE PDSOURCE IN('HRIS') " +
-            //  "     AND PDRFCODE <> '' and substr(pdrfcode,1,2) in('84','99','62','85','91','25','24')  " +
-            //  "    AND PDRFCODE >= '16311023' AND PDRFCODE <= '16311038'   " +
-            //  " ORDER BY PDTAXID ";
-
-
-
-            dt = db.ExecuteDb2Query(sql.ToString());
-
-
-
-            return dt;
-
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                ShowError("GetData error: " + ex.Message);
+                return null;
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string taxid = Request.Form["taxid"];
-            string password = Request.Form["password"];
-
-
+            taxid = Request.Form["taxid"];
+            pdaccdt = Request.Form["date_pdacc"];
+            ShowError("");
             ShowReport();
         }
 
-       
+        private void ShowError(string message)
+        {
+            if (message == "")
+            {
+                lblMessage.Visible = false;
+            }
+            else
+            {
+                lblMessage.Visible = true;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                lblMessage.Text = message;
+            }
+
+        }//end
 
 
     }

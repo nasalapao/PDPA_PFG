@@ -26,7 +26,8 @@
                                     
                             </div>
                             <div class="input-row">
-                                <input type="text" id="taxid" placeholder="เลขที่บัตร" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" style="width: 50%;"/>
+                                <input type="text" id="taxid" placeholder="เลขที่บัตร" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" style="width: 30%;"/>
+                                <input type="text" id="date_pdacc" placeholder="วันที่ยอมรับ yyyymmdd" name="date_pdacc" class="input" title="กรุณากรอกตัวเลขเท่านั้น" style="width: 30%;"/>
                                  <asp:DropDownList ID="ddlTYPEDOC" runat="server" CssClass="input" >
                                     <asp:ListItem Value="1">จัดเก็บรวบรวม ใช้ ทั่วไป</asp:ListItem>
                                     <asp:ListItem Value="2">ใช้เพื่อวัตถุประสงค๋ทางการตลาด</asp:ListItem>
@@ -35,7 +36,10 @@
 
 
                                 <asp:Button ID="Button1"  runat="server" Text="DATA" CssClass="custom-buttonwidth"  OnClick="Button1_Click" />
+                               
+                               
                             </div>
+                         <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False"></asp:Label>
                     </div>
 
                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>

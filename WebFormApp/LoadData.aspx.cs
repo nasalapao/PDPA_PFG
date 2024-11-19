@@ -15,7 +15,7 @@ namespace WebFormApp
         public string FnameE = "", Userid = "";
         public int Calldata = 0; //0 = not show ,1 = found data show, 2 = not found data show
         public string taxid = "", nameF = "", sername = "", addr = "", tel = "", pdsource = "", bddt = "", sexid = "";
-        public string currentNation = "", DateN = "", TimeN ="";
+        public string currentNation = "", DateN = "", TimeN = "";
         string pdtaxid = "";
 
         private dbConnection db = new dbConnection();
@@ -23,13 +23,9 @@ namespace WebFormApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (IsPostBack)
-            //{
-            //    return;
-            //}
 
             pdtaxid = Request.QueryString["pdtaxid"];
-           if (!string.IsNullOrEmpty(pdtaxid))
+            if (!string.IsNullOrEmpty(pdtaxid))
             {
                 btnsubmit_Click(sender, e);
             }
@@ -37,7 +33,7 @@ namespace WebFormApp
             if (!User.Identity.IsAuthenticated)
             {
                 // ถ้าผู้ใช้ยังไม่ล็อกอิน ให้เปลี่ยนเส้นทางไปยังหน้า Login.aspx
-                toLogin();
+                //toLogin();
             }
             else
             {
@@ -49,7 +45,7 @@ namespace WebFormApp
                 }
                 else
                 {
-                    toLogin();
+                    //toLogin();
                 }
             }
 
@@ -75,7 +71,7 @@ namespace WebFormApp
 
                 if (!string.IsNullOrEmpty(fotaxid))
                 {
-                     taxid = fotaxid;
+                    taxid = fotaxid;
                 }
                 if (!string.IsNullOrEmpty(pdtaxid))
                 {
@@ -85,61 +81,85 @@ namespace WebFormApp
 
 
                 if (Check_duplicate(taxid) == false) //เช็คก่อนว่ามีข้อมูลไหม 
+                {
+                    //ถึงข้อมูลมาจาก Cyber
+                    Calldata = 1;
+
+                    ShowError(string.Format("บัตรเลขที่ :{0} ยังไม่มีในระบบ กรูณาตรวจสอบข้อมูลว่าถูกต้องหรือไม่", taxid));
+                    if (loaddatafromHRIS(taxid) == true)
                     {
-                        //ถึงข้อมูลมาจาก Cyber
-                        Calldata = 1;
+                        return;
+                    }
 
-                        ShowError(string.Format("บัตรเลขที่ :{0} ยังไม่มีในระบบ กรูณาตรวจสอบข้อมูลว่าถูกต้องหรือไม่", taxid));
-                        if (loaddatafromHRIS(taxid) == true)
-                        {
-                            return;
-                        }
+                    if (DataCustomer_NFT(taxid) == true)
+                    {
+                        return;
+                    }
 
-                        if (DataCustomer_NFT(taxid) == true)
-                        {
-                            return;
-                        }
+                    if (DataSupplier_NFT(taxid) == true)
+                    {
+                        return;
+                    }
 
-                        if (DataSupplier_NFT(taxid) == true)
-                        {
-                            return;
-                        }
+                    if (DataCustomer_PFT(taxid) == true)
+                    {
+                        return;
+                    }
+                    if (DataSupplier_PFT(taxid) == true)
+                    {
+                        return;
+                    }
 
-                        if (DataCustomer_PFT(taxid) == true)
-                        {
-                            return;
-                        }
-                        if (DataSupplier_PFT(taxid) == true)
-                        {
-                            return;
-                        }
+                    ShowError(string.Format("บัตรเลขที่ :{0} ไม่มีข้อมูลใด ๆ เลย ตรวจสอบอีกครั้งว่าถูกต้อง", taxid));
 
-                        ShowError(string.Format("บัตรเลขที่ :{0} ไม่มีข้อมูลใด ๆ เลย ตรวจสอบอีกครั้งว่าถูกต้อง", taxid));
-
-                        taxid = "";
-                        nameF = "";
-                        addr = "";
-                        tel = "";
-                        pdsource = "";
-                        bddt = "";
-                        sexid = "";
-                        currentNation = "";
-                        DateN = "";
-                        TimeN = "";
-                        Calldata = 0;
+                    taxid = "";
+                    nameF = "";
+                    addr = "";
+                    tel = "";
+                    pdsource = "";
+                    bddt = "";
+                    sexid = "";
+                    currentNation = "";
+                    DateN = "";
+                    TimeN = "";
+                    Calldata = 0;
 
 
+                }
+                else
+                {
+                    Calldata = 2;
+
+                   
+
+                    if (Session["FnameE"] != null)
+                    {
+                        ShowError(string.Format("บัตรเลขที่ :{0} มีอยู่ในระบบ สามารถแก้ไข และ ลบข้อมูลได้ ", taxid));
+                        loaddatafromPDPAfile(taxid);
                     }
                     else
                     {
-                        Calldata = 2;
 
-                        ShowError(string.Format("บัตรเลขที่ :{0} มีอยู่ในระบบแล้วครับ", taxid));
-                        loaddatafromPDPAfile(taxid);
+                        Calldata = 0 ;
+                        ShowError(string.Format("บัตรเลขที่ :{0} มีอยู่ในระบบ กรุณารอสักครู่", taxid));
+                        Session["pdtaxid"] = taxid;
+                        Response.Cookies["pdtaxid"].Expires = DateTime.Now.AddMinutes(60); 
+                        string script = string.Format(@"
+                                                        <script type='text/javascript'>
+                                                            setTimeout(function() {{
+                                                                window.location.href = 'pdpaform.aspx';
+                                                            }}, 5000);
+                                                        </script>", taxid);
+                            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script);
+
+
                     }
 
-                
-               
+
+                }
+
+
+
 
 
 
@@ -191,7 +211,7 @@ namespace WebFormApp
                 else
                 {
                     return false;
-                    
+
                 }
             }
             catch (Exception ex)
@@ -203,7 +223,7 @@ namespace WebFormApp
 
         private bool DataSupplier_NFT(string taxidto)  // โหลดข้อมูลจาก M3
         {
-            
+
             try
             {
                 if (taxidto == "")
@@ -249,7 +269,7 @@ namespace WebFormApp
                 else
                 {
                     return false;
-                    
+
                 }
 
 
@@ -261,7 +281,7 @@ namespace WebFormApp
                 return false;
             }
 
-           
+
 
         }//end method
 
@@ -311,7 +331,7 @@ namespace WebFormApp
                 else
                 {
                     return false;
-                    
+
                 }
 
 
@@ -323,7 +343,7 @@ namespace WebFormApp
                 return false;
             }
 
-         
+
 
         }//end method
 
@@ -379,7 +399,7 @@ namespace WebFormApp
                 else
                 {
                     return false;
-                    
+
                 }
 
 
@@ -423,7 +443,7 @@ namespace WebFormApp
                     bddt = result.Rows[0]["pdbddt"].ToString();
                     sexid = result.Rows[0]["pdsexid"].ToString();
                     currentNation = result.Rows[0]["pdnation"].ToString();
-                    DateN = db.SqlDateYYYYMMDD(DateTime.Now); 
+                    DateN = db.SqlDateYYYYMMDD(DateTime.Now);
                     TimeN = DateTime.Now.ToString("HHmmss");//result.Rows[0]["pdrgtm"].ToString();
                 }
                 else
@@ -441,7 +461,7 @@ namespace WebFormApp
                     Calldata = 0;
                     ShowError(string.Format("บัตรเลขที่ :{0} ไม่มีข้อมูลใด ๆ เลย ตรวจสอบอีกครั้งว่าถูกต้อง", taxidto));
                 }
-        
+
             }
             catch (Exception ex)
             {
@@ -455,7 +475,7 @@ namespace WebFormApp
 
         private bool loaddatafromHRIS(string taxidto)
         { //โหลดข้อมูลมาจาก PNT_Person Cyber 
-           
+
             try
             {
                 sql.Clear();
@@ -478,14 +498,14 @@ namespace WebFormApp
                 sql.Append(string.Format("AND taxid = '{0}'", taxidto));
 
 
-                DataTable result = db.ExecuteSqlQuery(sql.ToString(),"Cyber");
+                DataTable result = db.ExecuteSqlQuery(sql.ToString(), "Cyber");
 
                 if (db.isError == false && db.isHasRow == true)
                 {
                     taxid = result.Rows[0]["taxid"].ToString();
                     nameF = result.Rows[0]["sname"].ToString();
-                    addr =  result.Rows[0]["ADDRESS"].ToString();
-                    tel =   result.Rows[0]["CurrentTel"].ToString();
+                    addr = result.Rows[0]["ADDRESS"].ToString();
+                    tel = result.Rows[0]["CurrentTel"].ToString();
                     pdsource = result.Rows[0]["pdsource"].ToString();
                     bddt = result.Rows[0]["BDDT"].ToString();
                     sexid = result.Rows[0]["SexId"].ToString();
@@ -510,10 +530,10 @@ namespace WebFormApp
                     TimeN = "";
                     Calldata = 0;
                     ShowError(string.Format("บัตรเลขที่ :{0} ไม่มีข้อมูลใด ๆ เลย ตรวจสอบอีกครั้งว่าถูกต้อง", taxidto));
-                   
+
                 }
 
-              
+
 
             }
             catch (Exception ex)
@@ -534,7 +554,7 @@ namespace WebFormApp
 
                 DataTable result = db.ExecuteDb2Query(sql_find);
 
-                if (db.isError == false && db.isHasRow == true )
+                if (db.isError == false && db.isHasRow == true)
                 {
                     return true;
                 }

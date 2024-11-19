@@ -12,6 +12,7 @@ namespace WebFormApp
         protected void Page_Load(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            Session.Clear();
             Response.Redirect("Login.aspx");
         }
     }

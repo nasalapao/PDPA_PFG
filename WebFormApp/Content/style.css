@@ -195,10 +195,10 @@ section#hero{
 
 .formpdpa {
    /*border: 1px solid red;*/
-   height: 100%;
+   max-height: 650px;
    display: flex;
    flex-direction: column; /* จัดเรียงไอเทมในแนวตั้ง */
-   justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+   /*justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
    align-items: center; /* จัดให้อยู่กลางแนวนอน */
 }
 
@@ -209,10 +209,10 @@ section#hero{
   flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
   justify-content: flex-start; /* จัดเนื้อหาให้อยู่ด้านบน */
   align-items: center; /* จัดให้อยู่กลางในแนวนอน */
-  margin-top: 23%; /* ระยะห่างด้านบน */
+  /*margin-top: 23%;*/ /* ระยะห่างด้านบน */
   text-align: center; /* จัดข้อความให้อยู่กลาง */
-  width: 55%; /* กำหนดความกว้าง */
-  height: auto; /* กำหนดความสูงอัตโนมัติตามเนื้อหา */
+  width: 65%; /* กำหนดความกว้าง */
+  /*height: auto;*/ /* กำหนดความสูงอัตโนมัติตามเนื้อหา */
   color: #000; /* สีของข้อความ */
    background-color: rgba(246, 255, 243, 0.70);  /* พื้นหลังสีเขียวอ่อนโปร่งแสง */
   backdrop-filter: blur(15px); /* เอฟเฟกต์เบลอที่พื้นหลัง */

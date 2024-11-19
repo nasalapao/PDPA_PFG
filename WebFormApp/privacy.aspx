@@ -364,7 +364,7 @@
                                 <p>• สิทธิในการระงับการใช้ข้อมูล</p>
                                 <p>• สิทธิในการคัดค้านการประมวลผล</p>
                                 <p>• สิทธิในการโอนย้ายข้อมูล</p>
-                                <button type="button" onclick="location.href='pdpaform.aspx'">ส่งข้อมูล</button>
+                                <button type="button" onclick="location.href='LoadData.aspx'">ส่งข้อมูล</button>
                             </div>
                         </td>
                         <td class="entryhead-right">
@@ -373,7 +373,7 @@
                             </div>
                              <div class="entryhead-list">
                                 <p>กรณีเจ้าของข้อมูลส่วนบุคคลประสงค์จะใช้สิทธิถอนความยินยอมตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล โปรดกรอกรายละเอียดตามแบบคำขอนี้</p>
-                                 <button type="button" onclick="location.href='pdpaform.aspx'">ส่งข้อมูล</button>
+                                 <button type="button" onclick="location.href='LoadData.aspx'">ส่งข้อมูล</button>
                             </div>
                         </td>
                     </tr>
