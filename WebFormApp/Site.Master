@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebFormApp.SiteMaster" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head runat="server">
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>PDPA</title>
+    <link rel="stylesheet" href="Content/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+              
+        <nav class="navbar">
+            <div class="logo"> <a href="#">PDPA</a></div>
+            <ul class="links">
+                <li><a href="index.aspx">Home</a></li>
+                <li><a href="privacy.aspx">Privacy</a></li>
+                <li><a href="pdpaform.aspx">Services</a></li>
+                <li><a href="login.aspx">Login</a></li>
+            </ul>
+           <!-- <a href="#" class="action_btn">Get Started</a>-->
+
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="dropdown_menu">
+                <li><a href="index.aspx">Home</a></li>
+                <li><a href="privacy.aspx">Privacy</a></li>
+                <li><a href="pdpaform.aspx">Services</a></li>
+                <li><a href="loginmain.aspx">Login</a></li>
+                <li> <a href="#" class="action_btn">Get Started</a></li>
+            </div>
+        </nav>
+    </header>
+
+
+  
+       
+           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+       
+    
+
+
+ <!-- อ้างอิงไฟล์ JavaScript -->
+    <script src="Scripts/menuToggle.js"></script>
+</body>
+
+</html>

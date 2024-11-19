@@ -1,0 +1,51 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="WebFormApp.Report" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head runat="server">
+      <% Server.Execute("head.html"); %>
+</head>
+
+<body>
+
+    <header>
+           <% Server.Execute("menu.aspx"); %> 
+    </header>
+
+    
+     <div class="formpdpa-container">
+            <div class="formpdpa-loaddataReport">
+                <form id="form1" runat="server">
+                    <div class="form-group">
+                             <div class="input-row" >
+                                    
+                            </div>
+                            <div class="input-row">
+                                <input type="text" id="taxid" placeholder="เลขที่บัตร" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" style="width: 50%;"/>
+                                 <asp:DropDownList ID="ddlTYPEDOC" runat="server" CssClass="input" >
+                                    <asp:ListItem Value="1">จัดเก็บรวบรวม ใช้ ทั่วไป</asp:ListItem>
+                                    <asp:ListItem Value="2">ใช้เพื่อวัตถุประสงค๋ทางการตลาด</asp:ListItem>
+                                    <asp:ListItem Value="3" Selected="True">ALL</asp:ListItem>
+                                </asp:DropDownList>
+
+
+                                <asp:Button ID="Button1"  runat="server" Text="DATA" CssClass="custom-buttonwidth"  OnClick="Button1_Click" />
+                            </div>
+                    </div>
+
+                   <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                   <rsweb:reportviewer id ="ReportViewer1" runat="server" Width ="100%"  Style="height: 100vh;">
+
+                   </rsweb:reportviewer>
+                  
+                </form>
+           </div>
+    </div>
+    
+</body>
+</html>

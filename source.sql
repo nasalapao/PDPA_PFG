@@ -1,0 +1,1 @@
+select * from PNT_Person where FnameE = 'siripong' and PersonCardID = '16710231'  -- source 

@@ -1,0 +1,758 @@
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sarabun' ,'sans-serif';
+}
+
+    .top-bar {
+        height: 60px;
+        background-color: #024427;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    body {
+        height: 100vh;
+        background-color: #000 ;
+        
+        background-size: cover;
+        background-position: center;
+        background-image: url('../Images/bg1.jpg'), url('../Images/bg2.jpg');
+        background-repeat: no-repeat, repeat;
+        background-position: center, top left;
+        background-size: cover, auto;
+    }
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+a:hover {
+    color: orange;
+}
+
+/*Header */
+header {
+    position: relative;
+    padding: 0 2rem;
+}
+
+hr {
+    width: 100%; /* ความกว้างของเส้น */
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin: 0.5rem auto;
+}
+
+
+.navbar {
+    
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+.navbar .logo a {
+    font-size: 2rem;
+    font-weight: bold ;
+}
+
+.navbar .links {
+        display: flex;
+        gap: 2rem;
+}
+
+.navbar .toggle_btn {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.action_btn{
+    background-color: orange;
+    color: #fff;
+    padding:  0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.action_btn:hover{
+    scale: 1.05;
+    color: #fff;
+}
+
+.action_btn:active{
+    scale: 0.95;
+    
+}
+
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+   background-color: rgba(0, 122, 204, 0.90);   
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: orange;}
+
+/* Dropdown Menu*/
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    height: 0;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu.open {
+    height: 390px;
+}
+
+
+.dropdown_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown_menu .action_btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*Hero */
+
+section#hero{
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:  center;
+    text-align: center;
+    color: #fff;
+}
+
+
+#hero h1{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.formpdpa {
+   /*border: 1px solid red;*/
+   height: 100%;
+   display: flex;
+   flex-direction: column; /* จัดเรียงไอเทมในแนวตั้ง */
+   justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+   align-items: center; /* จัดให้อยู่กลางแนวนอน */
+}
+
+
+.formpdpa-info {
+
+  display: flex; /* ตั้งค่าให้ใช้ Flexbox */
+  flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+  justify-content: flex-start; /* จัดเนื้อหาให้อยู่ด้านบน */
+  align-items: center; /* จัดให้อยู่กลางในแนวนอน */
+  margin-top: 23%; /* ระยะห่างด้านบน */
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+  width: 55%; /* กำหนดความกว้าง */
+  height: auto; /* กำหนดความสูงอัตโนมัติตามเนื้อหา */
+  color: #000; /* สีของข้อความ */
+   background-color: rgba(246, 255, 243, 0.70);  /* พื้นหลังสีเขียวอ่อนโปร่งแสง */
+  backdrop-filter: blur(15px); /* เอฟเฟกต์เบลอที่พื้นหลัง */
+  border-radius: 30px; /* มุมโค้งมน */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบางสีขาวโปร่งแสง */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* เงาฟุ้งสีขาว */
+  padding: 20px; /* ระยะห่างภายใน */
+}
+
+.formpdpa-data {
+
+  display: flex; /* ตั้งค่าให้ใช้ Flexbox */
+  flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+  justify-content: flex-start; /* จัดเนื้อหาให้อยู่ด้านบน */
+  
+  margin-top: -10px; /* ระยะห่างด้านบน */
+  text-align: left; /* จัดข้อความให้อยู่กลาง */
+  width: 80%; /* กำหนดความกว้าง */
+  max-height: 650px; /* กำหนดความสูงสูงสุด */
+  overflow-y: auto; /* เพิ่มแถบเลื่อนแนวตั้ง */
+  color: #000; /* สีของข้อความ */
+  background-color: rgba(246, 255, 243, 0.70); 
+  backdrop-filter: blur(15px); /* เอฟเฟกต์เบลอที่พื้นหลัง */
+  border-radius: 30px; /* มุมโค้งมน */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบางสีขาวโปร่งแสง */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* เงาฟุ้งสีขาว */
+  padding: 20px; /* ระยะห่างภายใน */
+  font-weight:normal;
+  gap: 5px;
+  text-align: left; /* จัดข้อความในคอนเทนเนอร์ให้ชิดซ้าย */
+}
+
+.formpdpa-container {
+    display: flex;
+    flex-direction: column; /* จัดเรียงไอเท็มในแนวตั้ง */
+    justify-content: flex-start; /* จัดให้อยู่ด้านบนสุด */
+    align-items: center; /* จัดให้อยู่ตรงกลาง */
+    width: 100%; /* ให้คอนเทนเนอร์มีความกว้างเต็มพื้นที่ */
+    box-sizing: border-box; /* ทำให้การคำนวณขนาดรวม padding และ border */
+    gap: 10px; /* เพิ่มช่องว่างระหว่างไอเท็ม */
+}
+
+
+.formpdpa-panel {
+    width: 100%; /* ทำให้ Panel กว้างเต็มพื้นที่ */
+    display: flex;
+    justify-content: center; /* ทำให้ฟอร์มอยู่กึ่งกลางหน้าจอ */
+}
+
+
+
+.formpdpa-loaddata{
+
+  display: flex; /* ตั้งค่าให้ใช้ Flexbox */
+  flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+  justify-content: center; /* จัดเนื้อหาให้อยู่ด้านบน */
+  
+  margin-top: 10px; /* ระยะห่างด้านบน */
+  text-align: Center; /* จัดข้อความให้อยู่กลาง */
+  width: 50%; /* กำหนดความกว้าง */
+  max-height: 650px; /* กำหนดความสูงสูงสุด */
+  overflow-y: auto; /* เพิ่มแถบเลื่อนแนวตั้ง */
+  color: #000; /* สีของข้อความ */
+  background-color: rgba(246, 255, 243, 0.70); 
+  backdrop-filter: blur(15px); /* เอฟเฟกต์เบลอที่พื้นหลัง */
+  border-radius: 30px; /* มุมโค้งมน */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบางสีขาวโปร่งแสง */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* เงาฟุ้งสีขาว */
+  padding: 20px; /* ระยะห่างภายใน */
+  font-weight:normal;
+  gap: 5px;
+  text-align: left; /* จัดข้อความในคอนเทนเนอร์ให้ชิดซ้าย */
+   font-size: var(--formsize);
+}
+
+
+
+.formpdpa-loaddataReport{
+
+  display: flex; /* ตั้งค่าให้ใช้ Flexbox */
+  flex-direction: column; /* จัดเรียงเนื้อหาในแนวตั้ง */
+  justify-content: center; /* จัดเนื้อหาให้อยู่ด้านบน */
+  
+  margin-top: 10px; /* ระยะห่างด้านบน */
+  text-align: Center; /* จัดข้อความให้อยู่กลาง */
+  width: 100%; /* กำหนดความกว้าง */
+  height: 100%; 
+  overflow-y: auto; /* เพิ่มแถบเลื่อนแนวตั้ง */
+  color: #000; /* สีของข้อความ */
+  background-color: rgba(246, 255, 243, 0.70); 
+  backdrop-filter: blur(15px); /* เอฟเฟกต์เบลอที่พื้นหลัง */
+  border-radius: 30px; /* มุมโค้งมน */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* ขอบบางสีขาวโปร่งแสง */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* เงาฟุ้งสีขาว */
+  padding: 20px; /* ระยะห่างภายใน */
+  font-weight:normal;
+  gap: 5px;
+  text-align: left; /* จัดข้อความในคอนเทนเนอร์ให้ชิดซ้าย */
+  font-size: var(--formsize-3);
+}
+
+
+
+
+
+
+.formpdpa-loaddata input {
+    width: 200px; /* กำหนดความกว้าง */
+    
+}
+
+
+.formpdpa-gridview{
+
+  
+}
+
+
+
+
+.formpdpa-data button{
+  width: 100%;
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formpdpa-info button{
+  width: 100%;
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-button{
+  width: 100%;
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-buttonwidth{
+
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+ .custom-button:hover{
+     color: orange;
+}
+
+.entry-title{
+        text-align: center; /* จัดข้อความให้อยู่กลางในแนวนอน */
+        margin: 35px auto; /* ใช้กับบล็อกเพื่อให้อยู่กลาง */
+        width: 100%; /* ปรับความกว้างเพื่อให้อยู่กลางในพื้นที่ทั้งหมด */
+}
+.entryhead{
+    margin: 15px 0; /* ใช้กับบล็อกเพื่อให้อยู่กลาง */
+}
+
+.entryhead-detail{
+     margin: 5px 0; 
+}
+
+.entryhead-list {
+    line-height: 1.6; /* เพิ่มระยะห่างแนวตั้งระหว่างบรรทัด */
+    margin-left : 1.2rem;
+}
+
+
+
+.entry-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    
+    
+    
+  
+}
+
+.entry-table table {
+   border-collapse: collapse;
+   width: 100%;
+}
+
+.entry-table td, th {
+   border: 1px solid #000;
+   vertical-align: top; /* จัดเนื้อหาใน td ให้ชิดด้านบน */
+   text-align: left;
+   padding: 8px;
+}
+
+
+.entryhead-group table {
+    width: 100%;
+}
+
+.entryhead-left, .entryhead-right {
+    width: 50%; /* แบ่งครึ่งให้แต่ละคอลัมน์ */
+    padding: 20px;
+    border-radius: 10px;
+    
+    vertical-align: top;
+}
+
+
+
+
+
+
+
+
+    .formpdpa-info h1 {
+        font-size:1.5rem;
+        margin-top: 20px;
+    }
+
+     .formpdpa-info p {
+        font-size:0.80rem;
+        /*border:1px solid green;*/
+        margin-top: 20px;
+        width:400px;
+        text-align: center;
+    }
+
+     :root {
+    --formsize: 0.80rem; /* กำหนดตัวแปรสำหรับขนาดฟอนต์ */
+    }
+
+
+     .pdpa-form {
+          font-size: var(--formsize);
+          /*border:1px solid red;*/
+          display: flex;
+          flex-direction: column;
+          gap: 1px; /* กำหนดระยะห่างระหว่างแต่ละคอนโทรล */
+          width: 100%;
+          text-align: left;
+          margin:5% 0;
+         
+     }
+
+     .form-group {
+        margin-bottom: 20px;
+        font-size: var(--formsize);
+        gap: 1px; /* กำหนดระยะห่างระหว่างแต่ละคอนโทรล */
+     }
+
+     .form-group textarea {
+        font-size: var(--formsize); /* กำหนดขนาดฟอนต์ให้ textarea */
+     }
+
+
+     .select-box {
+            width: 100%; /* ทำให้ select box กว้างเต็มพื้นที่ */
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+}
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        }
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: var(--formsize);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-row .input {
+    flex: 1;
+}
+
+
+.file-upload {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    font-size: var(--formsize);
+}
+
+.file-input-text {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #f9f9f9;
+    color: #000;
+    font-size: var(--formsize);
+}
+
+.file-button {
+    background-color: #2879f9;
+    color: #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin:1px;
+    font-size: var(--formsize);
+}
+
+.file-button input[type="file"] {
+    display: none;
+}
+
+.info-icon {
+    font-style: normal;
+    color: #aaa;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+
+.tooltip {
+  border-bottom: 2px dotted black;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  text-align: center;
+  border-radius: 6px;
+  font-weight: semi-bold;
+  padding: 5px 5px 5px 8px;
+  transition: opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* ระยะห่างระหว่างช่อง */
+    
+}
+
+.checkbox-group label {
+    width: 48%; /* กำหนดให้ครอบครองพื้นที่ประมาณครึ่งหนึ่งของคอลัมน์ */
+    font-weight: normal;
+}
+
+.btnsubmit{
+    background-color: #2879f9;
+    color: #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    font-size: var(--formsize);
+}
+
+
+
+
+/**********************login*****************************/
+.formpdpa-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(246, 255, 243, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* จัดให้อยู่กลางหน้าจอ */
+}
+
+
+.formpdpa-login h2 {
+  margin-bottom: 20px;
+}
+
+.formpdpa-login label {
+  width: 100%;
+  margin: 10px 0 5px;
+}
+
+.formpdpa-login input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.formpdpa-login button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/* ตั้งค่าความกว้างและสไตล์ของ GridView */
+.blue-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+   
+    color: #333;
+}
+
+.blue-grid th {
+    background-color: #007acc; /* สีฟ้าสำหรับส่วนหัว */
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.blue-grid td {
+    background-color: #e6f2ff; /* สีพื้นหลังของแถว */
+    padding: 10px;
+    border-bottom: 1px solid #b3d1ff; /* สีเส้นขอบแถว */
+}
+
+.linkid {
+    color:#000000;
+}
+
+.blue-grid tr:nth-child(even) td {
+    background-color: #cce6ff; /* สีพื้นหลังของแถวที่เป็นคู่ */
+}
+
+.blue-grid tr:hover td {
+    background-color: #99ccff; /* สีพื้นหลังเมื่อ hover */
+}
+
+.blue-grid td,
+.blue-grid th {
+    border-right: 1px solid #b3d1ff; /* เส้นขอบขวาสำหรับเซลล์ */
+}
+
+.blue-grid td:last-child,
+.blue-grid th:last-child {
+    border-right: none; /* ไม่ให้มีเส้นขอบขวาในเซลล์สุดท้าย */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Design */
+
+@media (max-width:992px){
+    .navbar .links,
+    .navbar .action_btn{
+        display: none;
+    }
+    .navbar .toggle_btn{
+        display: block;
+    }
+
+    .dropdown_menu{
+        display: block;
+    }
+}
+
+
+@media (max-width:576px){
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+
+}
