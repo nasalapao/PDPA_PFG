@@ -58,7 +58,7 @@ namespace WebFormApp
         {
 
             sql.Clear();
-            sql.Append(" SELECT RETAXID AS PDTAXID,PDTAXNAME ,PDTAXADDR ,REDATE ,  ");
+            sql.Append(" SELECT RETAXID AS PDTAXID,PDTAXNAME ,PDTAXADDR ,REDATE  , RESTATUS ");
             sql.Append(" FROM ITPROD.PDPAFILE A RIGHT JOIN  ITPROD.PDPAREQUREST B ");
             sql.Append(" ON	a.PDTAXID  = b.RETAXID ");
             //sql.Append(string.Format(" WHERE RETAXID='{0}' ", 0));
