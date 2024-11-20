@@ -48,18 +48,18 @@
                     <div class="form-group">
                     <label for="type">คุณต้องการใช้สิทธิเรื่องใด:</label>
                         <div class="checkbox-group">
-                            <label><input type="checkbox" name="rights" value="access"> สิทธิในการเข้าถึงข้อมูล</label>
-                            <label><input type="checkbox" name="rights" value="edit"> สิทธิในการแก้ไขข้อมูลให้ถูกต้อง</label>
-                            <label><input type="checkbox" name="rights" value="delete"> สิทธิในการลบข้อมูล</label>
-                            <label><input type="checkbox" name="rights" value="suspend"> สิทธิในการระงับการใช้ข้อมูล</label>
-                            <label><input type="checkbox" name="rights" value="oppose"> สิทธิในการคัดค้านการประมวลผล</label>
-                            <label><input type="checkbox" name="rights" value="transfer"> สิทธิในการโอนย้ายข้อมูล</label>
+                            <label><input type="checkbox" id="chkAccess" runat="server" value="access"> สิทธิในการเข้าถึงข้อมูล</label>
+                            <label><input type="checkbox" id="chkEdit" runat="server" value="edit"> สิทธิในการแก้ไขข้อมูลให้ถูกต้อง</label>
+                            <label><input type="checkbox" id="chkDelete" runat="server" value="delete"> สิทธิในการลบข้อมูล</label>
+                            <label><input type="checkbox" id="chkSuspend" runat="server" value="suspend"> สิทธิในการระงับการใช้ข้อมูล</label>
+                            <label><input type="checkbox" id="chkOppose" runat="server" value="oppose"> สิทธิในการคัดค้านการประมวลผล</label>
+                            <label><input type="checkbox" id="chkTransfer" runat="server" value="transfer"> สิทธิในการโอนย้ายข้อมูล</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>(ไม่จำเป็น) โปรดระบุเหตุผลหรือความจำเป็นในการใช้สิทธิของท่านโดยสังเขป</label> 
-                        <textarea name="remark" placeholder="เหตุผล"  rows="4" style="width:100%;"></textarea>
+                        <textarea name="remark" id="remark" runat="server" placeholder="เหตุผล"  rows="4" style="width:100%;"></textarea>
                     </div>
 
 
@@ -85,7 +85,7 @@
 
                     <br>
                     
-                    <asp:Button ID="Button1" runat="server" Text="ส่งข้อมูล" OnClick="Button1_Click" />
+                    <asp:Button ID="Button1" runat="server"  CssClass="custom-button" Text="ส่งข้อมูล" OnClick="Button1_Click" />
                     <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
 
                 </form>

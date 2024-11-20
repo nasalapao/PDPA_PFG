@@ -82,6 +82,15 @@ namespace WebFormApp
 
                 if (Check_duplicate(taxid) == false) //เช็คก่อนว่ามีข้อมูลไหม 
                 {
+
+
+                    if (Session["FnameE"] == null)
+                    {
+                        ShowError(string.Format("บัตรเลขที่ :{0} ยังไม่มีในระบบ กรูณาตรวจสอบข้อมูลว่าถูกต้องหรือไม่ ", taxid));
+                        Calldata = 0;
+                        return;
+                    }
+                    
                     //ถึงข้อมูลมาจาก Cyber
                     Calldata = 1;
 
@@ -141,7 +150,7 @@ namespace WebFormApp
                     {
 
                         Calldata = 0 ;
-                        ShowError(string.Format("บัตรเลขที่ :{0} มีอยู่ในระบบ กรุณารอสักครู่", taxid));
+                        ShowError(string.Format("บัตรเลขที่ :{0}  กรุณารอสักครู่", taxid));
                         Session["pdtaxid"] = taxid;
                         Response.Cookies["pdtaxid"].Expires = DateTime.Now.AddMinutes(60); 
                         string script = string.Format(@"

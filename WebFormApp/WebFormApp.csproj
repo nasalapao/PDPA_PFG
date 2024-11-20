@@ -220,6 +220,7 @@
     <Content Include="pdpaform.aspx" />
     <Content Include="privacy.aspx" />
     <Content Include="Report.aspx" />
+    <Content Include="Requrest.aspx" />
     <Content Include="SaveData.aspx" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -386,6 +387,13 @@
     </Compile>
     <Compile Include="Report.aspx.designer.cs">
       <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Requrest.aspx.cs">
+      <DependentUpon>Requrest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Requrest.aspx.designer.cs">
+      <DependentUpon>Requrest.aspx</DependentUpon>
     </Compile>
     <Compile Include="SaveData.aspx.cs">
       <DependentUpon>SaveData.aspx</DependentUpon>

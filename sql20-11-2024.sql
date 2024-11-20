@@ -1,0 +1,65 @@
+ SELECT pdtaxid,pdrfcode,pdprefix,pdtaxname,   pdtaxaddr,pdcuraddr
+ ,pdworkaddr,   case when pdsexid <> '' then 
+ case when pdsexid = '1' then 'Male' else 'Female'  
+ end end pdsexid,    pdbddt,pdphone,pdemail,pdlineid
+ ,pdbanknm,pdbankno,    case when pdtypedoc <> '' then 
+ case when pdtypedoc = '1' then 'ยินยอม' else 'ไม่ยินยอม'    
+ end end pdtypedoc,pdaccdt,    case when pdtypedoc2 <> '' 
+ then case when pdtypedoc = '1' then 'ยินยอม' else 'ไม่ยินยอม'    
+ end end pdtypedoc2,pdaccdt2,    case when pdmthdoc <> '' 
+ then case when pdmthdoc = '1' then 'ผ่าน Web' else 'เอกสาร แบบฟอร์ม' 
+ end end pdmthdoc    
+ FROM ITPROD.PDPAFILE 
+ WHERE 1 = 1 
+ AND  PDACCDT = '20220718'
+ ORDER BY PDTAXID,PDRFCODE 
+
+ SELECT  PDTAXID,PDTAXNAME ,PDTAXADDR ,REDATE 
+ FROM ITPROD.PDPAFILE A INNER JOIN  ITPROD.PDPAREQUREST B
+ ON	a.PDTAXID  = b.RETAXID 
+ ORDER  BY REDATE DESC 
+ 
+
+
+RESTATUS
+
+SELECT * FROM	PDPAREQUREST
+WHERE RETAXID='1319900087050';
+ 
+---แก้ไข ภาษาไทย ----
+ALTER TABLE ITPROD.PDPAREQUREST
+ALTER COLUMN REMARK SET DATA TYPE VARGRAPHIC(100) CCSID 13488;
+ 
+
+
+ INSERT INTO PFGMVX.ITPROD.PDPAREQUREST
+(RETAXID, REDATE, REACCESS, REEDIT, REDELETE, RESUSPEND, REOPPOSE, RETRANSFER, REMARK, RESTATUS)
+VALUES('1319900087050','2024-11-20' , 0, 0, 0, 0, 0, 0, 'ภาษาไทย', 0);
+ 
+ 
+ 
+DELETE FROM PFGMVX.ITPROD.PDPAREQUREST
+WHERE RETAXID='1319900087050';
+ 
+ 
+ INSERT INTO PFGMVX.ITPROD.PDPAREQUREST
+(RETAXID)
+VALUES('1319900087050');
+
+
+SELECT  PDTAXID,PDTAXNAME ,PDTAXADDR ,REDATE , 
+	CASE B.RESTATUS
+        WHEN 0 THEN CAST('รอดำเนินการ' AS VARGRAPHIC(20) CCSID 13488)
+        WHEN 1 THEN CAST('อยู่ระหว่างดำเนินการ' AS VARGRAPHIC(30) CCSID 13488)
+        WHEN 2 THEN CAST('เสร็จสิ้น' AS VARGRAPHIC(20) CCSID 13488)
+        WHEN 3 THEN CAST('ปฏิเสธ' AS VARGRAPHIC(10) CCSID 13488)
+        ELSE CAST('ไม่ทราบสถานะ' AS VARGRAPHIC(20) CCSID 13488)
+    END AS RESTATUS 
+FROM ITPROD.PDPAFILE A INNER JOIN  ITPROD.PDPAREQUREST B  
+ON a.PDTAXID  = b.RETAXID  ORDER  BY REDATE DESC 
+
+
+
+
+
+

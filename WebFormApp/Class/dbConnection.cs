@@ -210,6 +210,14 @@ public class dbConnection
         var sReturn = string.Format("{0}{1:00}{2:00}", sender2.Year, sender2.Month, sender2.Day);
         return sReturn;
     }//end 
+
+    public string SqlDateYYYY_MM_DD(DateTime sender)
+    {
+        var sender2 = sender;
+        var sReturn = string.Format("{0}-{1:00}-{2:00}", sender2.Year, sender2.Month, sender2.Day);
+        return sReturn;
+    }//end 
+
     public string SqlDateYYYYMMDDHHMMSS(DateTime sender)
     {
         var sender2 = sender;

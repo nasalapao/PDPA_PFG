@@ -20,6 +20,7 @@
                             <a href='LoadData.aspx'>Load</a>
                             <a href='View.aspx'>View</a>
                             <a href='Report.aspx'>Report</a>
+                            <a href='Requrest.aspx'>Requrest</a>
                         </div>
                     </div>
                     <li><a href='Logout.aspx'>Logout</a></li>
