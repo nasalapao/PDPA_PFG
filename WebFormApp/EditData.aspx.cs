@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace WebFormApp
     {
         private dbConnection db = new dbConnection();
         StringBuilder sql = new StringBuilder();
+
+        string Filename = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -87,6 +90,11 @@ namespace WebFormApp
                     }
                     else if (action == "delete")
                     {
+                        //เช็คก่อนว่ามีไฟล์ upload ไหม ให้ลบออกก่อน 
+
+                        deleltefile(taxid);
+
+
                         string sql = string.Format("DELETE itprod.pdpafile WHERE PDTAXID =  '{0}'", taxid);
                         db.ExecuteDb2Query(sql);
 
@@ -113,10 +121,64 @@ namespace WebFormApp
                 }
             }
         }
-                       
-                     
 
-        
+        private void deleltefile(string taxid)
+        {
+            bool hasUploadedFile = GetFileNameUploaded(taxid);
+
+            if (hasUploadedFile == false)
+            {
+                return;
+            }
+
+            string filePath = ("\\\\172.16.33.37\\PDPA_Document\\" + Filename);
+
+            try
+            {
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                    Console.WriteLine("File deleted successfully.");
+                    
+                }
+                else
+                {
+                    Console.WriteLine("File not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting file: " + ex.Message);
+            }
+        }//end             
+
+        private bool GetFileNameUploaded(string taxid)
+        {
+
+            try
+            {
+                string sql = string.Format("SELECT PDAFILE FROM itprod.pdpafile WHERE PDTAXID = '{0}'", taxid);
+                DataTable result = db.ExecuteDb2Query(sql);
+                if (db.isError == false || db.isHasRow)
+                {
+
+                    Filename = result.Rows[0]["PDAFILE"].ToString();
+                    if (string.IsNullOrEmpty(Filename))
+                    {
+                        return false;
+                    }
+                    return true; // มีไฟล์อัปโหลดแล้ว
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Log error: " + ex.Message);
+                return false;
+            }
+
+        }//end
 
         private bool EditDataInDatabase(string taxid, string firstName, string address, string phoneNumber, string dataSource, string birthDate, string gender, string currentNation, string DateN, string TimeN)
         {

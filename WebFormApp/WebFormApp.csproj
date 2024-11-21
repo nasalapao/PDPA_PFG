@@ -189,6 +189,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="DownloadFile.aspx" />
     <Content Include="EditData.aspx" />
     <Content Include="head.html" />
     <Content Include="Images\accent.png" />
@@ -209,6 +210,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
+    <Content Include="ReLoadData.aspx" />
     <Content Include="LoadData.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Logout.aspx" />
@@ -321,6 +323,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DownloadFile.aspx.cs">
+      <DependentUpon>DownloadFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DownloadFile.aspx.designer.cs">
+      <DependentUpon>DownloadFile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditData.aspx.cs">
       <DependentUpon>EditData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -337,6 +346,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReLoadData.aspx.cs">
+      <DependentUpon>ReLoadData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReLoadData.aspx.designer.cs">
+      <DependentUpon>ReLoadData.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoadData.aspx.cs">
       <DependentUpon>LoadData.aspx</DependentUpon>

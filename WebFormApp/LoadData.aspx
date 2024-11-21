@@ -19,7 +19,7 @@
              <form id="form1" runat="server">
 
                  <div class="form-group">
-                    <label for="taxid">เลชที่บัตร:</label>
+                    <label for="taxid">เลขที่บัตร:</label>
                         <div class="input-row">
                             <input type="text" id="taxid" placeholder="" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" />
                             <%--<asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" OnClientClick="return ShowHideCyber(); return false;" />--%>

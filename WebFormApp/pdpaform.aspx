@@ -84,7 +84,11 @@
 
 
                     <br>
-                    
+                    <asp:Button ID="btnDelete" runat="server"  CssClass="custom-button" Text="ถอนความยินยอม" 
+                         Visible="False"   
+                         OnClick="btnDelete_Click" 
+                         OnClientClick="return confirm('คุณต้องการถอนความยินยอมใช่หรือไม่');" 
+                        />
                     <asp:Button ID="Button1" runat="server"  CssClass="custom-button" Text="ส่งข้อมูล" OnClick="Button1_Click" />
                     <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
 

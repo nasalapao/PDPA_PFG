@@ -82,10 +82,28 @@ namespace WebFormApp
                     {
                         txtSTATUS = "ปฏิเสธ";
                     }
+                    else if (STATUS == 4)
+                    {
+                        txtSTATUS = "ถอนคำร้อง";
+                    }
+                    else
+                    {
+                        txtSTATUS = "ไม่พบสถาน่ะ";
+                    }
 
                     Button1.Enabled = false;
-                    Button1.Text = string.Format("ระบบได้รับข้อมูลของคุณแล้ว เจ้าหน้าที่ : ({0})" , txtSTATUS);
-                   
+                    Button1.Text = string.Format("ระบบได้รับข้อมูลของคุณแล้ว สถาน่ะ : ({0})" , txtSTATUS);
+
+                    if (STATUS < 2)
+                    {
+                        btnDelete.Visible = true;
+                    }
+                    else
+                    {
+                        btnDelete.Visible = false;
+                    }
+
+
                 }
 
 
@@ -108,19 +126,14 @@ namespace WebFormApp
                 sql.Append(",pdrgdt  ,pdrgtm,pdaccdt FROM itprod.pdpafile  ");
                 sql.Append(string.Format("WHERE PDTAXID =  '{0}' ", taxidto));
 
-
-
-
                 DataTable result = db.ExecuteDb2Query(sql.ToString());
 
                 if (db.isError == false && db.isHasRow == true)
                 {
-
                     txtFirstName.Text = result.Rows[0]["pdtaxname"].ToString();
                     txtTel.Text = result.Rows[0]["pdphone"].ToString();
                     txtEmail.Text = result.Rows[0]["PDEMAIL"].ToString();
                     txtAddress.Text = result.Rows[0]["pdtaxaddr"].ToString();
-
                 }
 
 
@@ -248,6 +261,7 @@ namespace WebFormApp
                 {
                     lblMessage.Text = "บันทึกข้อมูลสำเร็จ!";
                     lblMessage.ForeColor = System.Drawing.Color.Green;
+                    loadDataRequese(pdtaxid);
                 }
                 else
                 {
@@ -261,7 +275,38 @@ namespace WebFormApp
                 lblMessage.Text = "ข้อผิดพลาด: " + ex.Message;
                 lblMessage.ForeColor = System.Drawing.Color.Red;
             }
-        }//class
+        }
+
+      
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pdtaxid = Session["pdtaxid"] as string;
+                string sql = string.Format("UPDATE ITPROD.PDPAREQUREST SET RESTATUS = 4 WHERE RETAXID= '{0}' ", pdtaxid);
+
+                DataTable result = db.ExecuteDb2Query(sql);
+                if (db.isError == false)
+                {
+                    ShowError("ยกเลิกคำร้องสำเร็จ");
+                    loadDataRequese(pdtaxid);
+                }
+                else
+                {
+                    ShowError("ไม่สามารถยกเลิกคำร้องได้ กรุณาทำใหม่อีกครั้ง");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                // แสดงข้อผิดพลาด
+                lblMessage.Text = "ข้อผิดพลาด: " + ex.Message;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
+
+          
+        }//end method
 
     }
 }

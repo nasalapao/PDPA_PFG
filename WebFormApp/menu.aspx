@@ -6,7 +6,7 @@
     <ul class="links">
         <li><a href="index.aspx">Home</a></li>
         <li><a href="privacy.aspx">Privacy</a></li>
-        <li><a href="LoadData.aspx">Services</a></li>
+        <li><a href="ReLoadData.aspx">Services</a></li>
 
          <% 
             if (valueFromSession == "") {

@@ -4,12 +4,12 @@
 <html lang="en">
 
 <head runat="server">
-      <% Server.Execute("head.html"); %>
+    <% Server.Execute("head.html"); %>
 
-       <style>
+    <style>
         /* CSS ที่เพิ่มเข้ามาตามที่กล่าวไว้ข้างต้น */
         .input-row {
-             align-items: center; /* จัดให้อยู่กลาง Rows*/
+            align-items: center; /* จัดให้อยู่กลาง Rows*/
         }
 
         .custom-file-upload {
@@ -19,9 +19,8 @@
             color: #fff;
             padding: 10px 20px;
             border-radius: 4px;
-            width:100%
+            width: 100%;
         }
-
     </style>
 
 </head>
@@ -29,40 +28,39 @@
 <body>
 
     <header>
-           <% Server.Execute("menu.aspx"); %> 
-
+        <% Server.Execute("menu.aspx"); %>
     </header>
 
 
-     <div class="formpdpa-container">
-            <div class="formpdpa-loaddata">
-                 <form id="form1" runat="server">
+    <div class="formpdpa-container">
+        <div class="formpdpa-loaddata">
+            <form id="form1" runat="server">
 
-                     <div class="form-group">
-                        <label for="taxid">กรุณาเลือกเอกสารที่ upload:</label>
-                            <div class="input-row">
-                            
+                <div class="form-group">
+                    <label for="taxid">กรุณาเลือกเอกสารที่ upload:</label>
+                    <div class="input-row">
 
-                                <div class="custom-file-upload">
-                                    <asp:FileUpload ID="FileUpload1" runat="server"  />
-                                </div>
-                                
-                                
-                                <asp:Button ID="btnsubmit" runat="server" Text="Save" CssClass="custom-button" OnClick="btnsubmit_Click" />
 
-                            </div>
+                        <div class="custom-file-upload">
+                            <asp:FileUpload ID="FileUpload1" runat="server" />
                         </div>
-                 
-                    <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
-                    <br>
-                </form>
-            </div>
-           </div>
+                        <asp:Button ID="btnsubmit" runat="server" Text="Save" CssClass="custom-button" OnClick="btnsubmit_Click" />
+
+                    </div>
+                </div>
+
+                <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
+                <br/><br/>
+                <asp:Button ID="btnView" runat="server" Text="View" CssClass="custom-button" OnClick="btnView_Click"/>
+                <asp:Button ID="btnDelete" runat="server" Text="Delete File" CssClass="custom-button" OnClick="btnDelete_Click" />
+            </form>
+        </div>
+    </div>
 
 
- <!-- อ้างอิงไฟล์ JavaScript -->
+    <!-- อ้างอิงไฟล์ JavaScript -->
     <script src="Scripts/menuToggle.js"></script>
-  
+
 </body>
 
 </html>

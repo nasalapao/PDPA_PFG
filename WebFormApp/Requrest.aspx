@@ -26,7 +26,7 @@
          <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
 
          <form id="mainForm" runat="server">
-            <asp:GridView ID="GridView1" runat="server" DataKeyNames="pdtaxid"  CssClass="blue-grid" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" PageSize="100" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit">
+            <asp:GridView ID="GridView1" runat="server" DataKeyNames="pdtaxid"  CssClass="blue-grid" AutoGenerateColumns="False" GridLines="None" AllowPaging="True" PageSize="100" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowEditing="GridView1_RowEditing" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnDataBound="GridView1_DataBound">
                 <Columns>
                     <asp:BoundField DataField="pdtaxid" HeaderText="TaxID" ReadOnly="True" />
                     <asp:BoundField DataField="pdtaxname" HeaderText="Name" ReadOnly="True" />
@@ -51,6 +51,7 @@
                                 <asp:ListItem Text="อยู่ระหว่างดำเนินการ" Value="1" />
                                 <asp:ListItem Text="เสร็จสิ้น" Value="2" />
                                 <asp:ListItem Text="ปฏิเสธ" Value="3" />
+                                <asp:ListItem Text="ถอนคำร้อง" Value="4" />
                             </asp:DropDownList>
                         </EditItemTemplate>
                         <ItemTemplate>

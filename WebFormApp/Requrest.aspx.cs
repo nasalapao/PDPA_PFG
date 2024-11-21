@@ -86,10 +86,7 @@ namespace WebFormApp
         }
 
 
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
+   
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -163,7 +160,7 @@ namespace WebFormApp
             }
             catch (Exception ex)
             {
-                ShowError("อัปเดตข้อมูลสำเร็จ!");
+                ShowError("อัปเดตข้อมูลสำเร็จ!" + ex.ToString());
             }
 
         }
@@ -172,7 +169,29 @@ namespace WebFormApp
         {
             GridView1.EditIndex = -1;
             ShowData();
-        }//class
+        }
+
+        protected void GridView1_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState.HasFlag(DataControlRowState.Edit))
+            {
+                string currentStatus = DataBinder.Eval(e.Row.DataItem, "RESTATUS").ToString();
+                DropDownList ddlStatus = (DropDownList)e.Row.FindControl("DropDownListSTATUS");
+                if (ddlStatus != null)
+                {
+                    ddlStatus.SelectedValue = currentStatus;
+                }
+            }
+        }
+
+
+       
+
 
 
     }
