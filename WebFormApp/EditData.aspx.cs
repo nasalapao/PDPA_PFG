@@ -47,7 +47,7 @@ namespace WebFormApp
             {
                 if (Request.HttpMethod == "POST")
                 {
-                    // Retrieve form values sent via POST
+                    
                     action = Request.Form["action"];
                     taxid = Request.Form["taxid"];
                     firstName = Request.Form["first_name"];
@@ -91,7 +91,6 @@ namespace WebFormApp
                     else if (action == "delete")
                     {
                         //เช็คก่อนว่ามีไฟล์ upload ไหม ให้ลบออกก่อน 
-
                         deleltefile(taxid);
 
 
@@ -197,19 +196,19 @@ namespace WebFormApp
                         new OleDbParameter("@DateN", OleDbType.VarChar) { Value = DateN },
                         new OleDbParameter("@TimeN", OleDbType.VarChar) { Value = TimeN },
                         new OleDbParameter("@pdaccdt", OleDbType.VarChar) { Value = 0 },
-                        new OleDbParameter("@taxid", OleDbType.VarChar) { Value = taxid } // ใช้ taxid เป็นเงื่อนไขในการระบุข้อมูลที่จะอัปเดต
+                        new OleDbParameter("@taxid", OleDbType.VarChar) { Value = taxid } 
                     };
 
-                // สร้างคำสั่ง SQL สำหรับอัปเดตข้อมูล
+               
                 var sql = new StringBuilder();
                 sql.Append("UPDATE itprod.pdpafile ");
                 sql.Append("SET pdtaxname = ?, pdtaxaddr = ?, pdphone = ?, pdsource = ?, pdbddt = ?, pdsexid = ?, pdnation = ?, pdrgdt = ?, pdrgtm = ?, pdaccdt = ? ");
                 sql.Append("WHERE pdtaxid = ?");
 
-                // เรียกใช้คำสั่งเพื่ออัปเดตข้อมูลลงในฐานข้อมูล
+               
                 int result = db.ExecuteDb2NonQuery(sql.ToString(), parameters);
 
-                // ตรวจสอบผลลัพธ์ของการอัปเดตข้อมูล
+                
                 return result > 0; // คืนค่า true หากอัปเดตสำเร็จ
             }
             catch (Exception ex)

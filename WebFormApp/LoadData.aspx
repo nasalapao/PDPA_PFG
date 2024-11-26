@@ -23,7 +23,7 @@
                         <div class="input-row">
                             <input type="text" id="taxid" placeholder="" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" />
                             <%--<asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" OnClientClick="return ShowHideCyber(); return false;" />--%>
-                            <asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" />
+                            <asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-buttonfind" OnClick="btnsubmit_Click" />
 
                         </div>
                     </div>
@@ -69,7 +69,6 @@
                                                     <input type='text' placeholder='ข้อมูลจาก' name='pdsource' class='input' value='" + pdsource + @"' readonly title='ข้อมูลจาก'>
                                                     <input type='text' placeholder='วันเดือนปีเกิด' name='bddt' class='input' value='" + bddt + @"' readonly title='วันเดือนปีเกิด'>
                                                     <input type='text' placeholder='เพศ' name='sexid' class='input' value='" + sexid + @"' readonly title='1=ชาย , 2=หญิง'>
-
                                                 </div>
                                             </div>
                                                 <input type='hidden' name='currentNation' value='" + currentNation + @"'>  

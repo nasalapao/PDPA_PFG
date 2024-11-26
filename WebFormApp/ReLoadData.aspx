@@ -23,7 +23,7 @@
                         <div class="input-row">
                             <input type="text" id="taxid" placeholder="" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" />
                             <%--<asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" OnClientClick="return ShowHideCyber(); return false;" />--%>
-                            <asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" />
+                            <asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-buttonfind" OnClick="btnsubmit_Click" />
 
                         </div>
                     </div>

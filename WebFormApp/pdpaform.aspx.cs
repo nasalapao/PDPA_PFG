@@ -20,20 +20,11 @@ namespace WebFormApp
             if (!IsPostBack) // ตรวจสอบว่าหน้านี้โหลดครั้งแรกหรือไม่
             {
 
-                
-
-
-
-
-
-
                 pdtaxid = Session["pdtaxid"] as string;
                 if (!string.IsNullOrEmpty(pdtaxid))
                 {
                     loaddatafromPDPAfile(pdtaxid);
                     loadDataRequese(pdtaxid);
-                  
-                    
                 }
                 else
                 {
@@ -101,6 +92,16 @@ namespace WebFormApp
                     else
                     {
                         btnDelete.Visible = false;
+                        
+                    }
+
+                    if  (STATUS == 4) //หากถอนแล้ว สามารถส่งคำร้องได้อีกครั้ง 
+                    {
+                        btnAdd.Visible = true;
+                    }
+                    else
+                    {
+                        btnAdd.Visible = false;
                     }
 
 
@@ -134,6 +135,11 @@ namespace WebFormApp
                     txtTel.Text = result.Rows[0]["pdphone"].ToString();
                     txtEmail.Text = result.Rows[0]["PDEMAIL"].ToString();
                     txtAddress.Text = result.Rows[0]["pdtaxaddr"].ToString();
+
+                    txtFirstName.Enabled = false;
+                    txtTel.Enabled = false;
+                    txtEmail.Enabled = false;
+                    txtAddress.Enabled = false;
                 }
 
 
@@ -306,6 +312,107 @@ namespace WebFormApp
             }
 
           
+        }//end method
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int REACCESS = 0, REEDIT = 0, REDELETE = 0, RESUSPEND = 0, REOPPOSE = 0, RETRANSFER = 0;
+                string remark = "";
+              
+
+
+                pdtaxid = Session["pdtaxid"] as string;
+
+
+                if (string.IsNullOrEmpty(pdtaxid))
+                {
+                    ShowError("Error pdtaxid");
+                    Response.Redirect("LoadData.aspx");
+                    return;
+                }
+
+                // ตรวจสอบว่า Checkbox ใดถูกเลือกและตั้งค่าตัวแปร
+                if (chkAccess.Checked)
+                {
+                    REACCESS = 1;
+                }
+                if (chkEdit.Checked)
+                {
+                    REEDIT = 1;
+                }
+                if (chkDelete.Checked)
+                {
+                    REDELETE = 1;
+                }
+                if (chkSuspend.Checked)
+                {
+                    RESUSPEND = 1;
+                }
+                if (chkOppose.Checked)
+                {
+                    REOPPOSE = 1;
+                }
+                if (chkTransfer.Checked)
+                {
+                    RETRANSFER = 1;
+                }
+
+                // ตรวจสอบว่าไม่มี Checkbox ใดถูกเลือก
+                if (REACCESS == 0 && REEDIT == 0 && REDELETE == 0 && RESUSPEND == 0 && REOPPOSE == 0 && RETRANSFER == 0)
+                {
+                    ShowError("คุณต้องการใช้สิทธิเรื่องใด กรุณาเลือกอย่างน้อย 1 อัน");
+                    return;
+                }
+
+
+
+
+                remark = Request.Form["remark"];
+
+                if (string.IsNullOrEmpty(remark))
+                {
+                    remark = "";
+                }
+
+
+
+
+
+
+
+
+
+                string sql = string.Format(@"UPDATE ITPROD.PDPAREQUREST SET 
+                                            RESTATUS = 0 
+                                            , REDATE = '{1}' 
+                                            , REACCESS = {2}
+                                            , REEDIT = {3}
+                                            , REDELETE = {4}
+                                            , RESUSPEND = {5}
+                                            , REOPPOSE = {6}
+                                            , RETRANSFER = {7}
+                                            , REMARK = '{8}'
+                                            WHERE RETAXID= '{0}' ", pdtaxid, db.SqlDateYYYY_MM_DD(DateTime.Now), REACCESS, REEDIT, REDELETE, RESUSPEND, REOPPOSE, RETRANSFER, remark);
+
+                DataTable result = db.ExecuteDb2Query(sql);
+                if (db.isError == false)
+                {
+                    ShowError("ยื่นคำร้องใหม่สำเร็จ");
+                    loadDataRequese(pdtaxid);
+                }
+                else
+                {
+                    ShowError("ไม่สามารถยกเลิกคำร้องได้ กรุณาทำใหม่อีกครั้ง");
+                }
+            }
+            catch (Exception ex)
+            {
+                // แสดงข้อผิดพลาด
+                lblMessage.Text = "ข้อผิดพลาด btnAdd_Click : " + ex.Message;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
         }//end method
 
     }

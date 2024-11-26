@@ -320,8 +320,7 @@ section#hero{
 
 
 .formpdpa-loaddata input {
-    width: 200px; /* กำหนดความกว้าง */
-    
+      
 }
 
 
@@ -355,6 +354,16 @@ section#hero{
 
 .custom-button{
   width: 100%;
+  padding: 10px;
+  background-color: #2879f9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-buttonfind{
+  width: 10%;
   padding: 10px;
   background-color: #2879f9;
   color: #fff;
@@ -501,6 +510,7 @@ section#hero{
 .input-row {
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
 .input {
