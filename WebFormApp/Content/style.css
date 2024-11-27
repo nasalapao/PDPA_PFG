@@ -122,7 +122,7 @@ hr {
 .dropdown-content {
   display: none;
   position: absolute;
-   background-color: rgba(0, 122, 204, 0.90);   
+  background-color: rgba(0, 122, 204, 0.90);   
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -150,11 +150,14 @@ hr {
     top: 60px;
     height: 0;
     width: 300px;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 122, 204, 0.90);   
     backdrop-filter: blur(15px);
     border-radius: 10px;
     overflow: hidden;
     transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+
+
 }
 
 .dropdown_menu.open {
@@ -326,7 +329,7 @@ section#hero{
 
 .formpdpa-gridview{
 
-  
+  margin:2rem;
 }
 
 
@@ -360,6 +363,7 @@ section#hero{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin:3px;
 }
 
 .custom-buttonfind{
@@ -756,6 +760,21 @@ section#hero{
     .dropdown_menu{
         display: block;
     }
+
+
+    
+     #GridView1 {
+            display: block; /* เปลี่ยนตารางให้เป็นบล็อก */
+            margin:1rem;
+        }
+        #GridView1 tr {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #GridView1 td {
+            display: block;
+            text-align: left;
+        }
 }
 
 
@@ -764,5 +783,6 @@ section#hero{
         left: 2rem;
         width: unset;
     }
+
 
 }

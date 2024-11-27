@@ -22,12 +22,10 @@
                     <label for="taxid">เลขที่บัตร:</label>
                         <div class="input-row">
                             <input type="text" id="taxid" placeholder="" name="taxid" class="input" title="กรุณากรอกตัวเลขเท่านั้น" />
-                            <%--<asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-button" OnClick="btnsubmit_Click" OnClientClick="return ShowHideCyber(); return false;" />--%>
                             <asp:Button ID="btnsubmit" runat="server" Text="ค้นหา" CssClass="custom-buttonfind" OnClick="btnsubmit_Click" />
 
                         </div>
                     </div>
-              <%--  <button type="submit">เข้าสู่ระบบ</button>--%>
                 <asp:Label ID="lblMessage" runat="server" Text="Label"></asp:Label>
                 <br>
             </form>
@@ -38,7 +36,6 @@
      </div>
   
     <script>
-   
         document.getElementById("taxid").addEventListener("input", function (event) {
             // ตรวจสอบว่าค่าที่กรอกเป็นตัวเลขเท่านั้น
             this.value = this.value.replace(/[^0-9]/g, '');

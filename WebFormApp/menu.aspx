@@ -1,17 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="menu.aspx.cs" Inherits="WebFormApp.menu" %>
 
-           
+
 <nav class="navbar">
-    <div class="logo"> <a href="#">PDPA</a></div>
+    <div class="logo"><a href="#">PDPA</a></div>
     <ul class="links">
         <li><a href="index.aspx">Home</a></li>
         <li><a href="privacy.aspx">Privacy</a></li>
         <li><a href="ReLoadData.aspx">Services</a></li>
 
-         <% 
-            if (valueFromSession == "") {
+        <% 
+            if (valueFromSession == "")
+            {
                 Response.Write(" <li><a href='login.aspx'>Login</a></li>");
-            }else
+            }
+            else
             {
                 Response.Write(@"
                     <div class='dropdown'>
@@ -28,14 +30,10 @@
 
             }
 
-             %>
-        
-        
-            
-       
+        %>
     </ul>
 
-   <!-- <a href="#" class="action_btn">Get Started</a>-->
+    <!-- <a href="#" class="action_btn">Get Started</a>-->
 
     <div class="toggle_btn">
         <i class="fa-solid fa-bars"></i>
@@ -47,26 +45,28 @@
         <li><a href="LoadData.aspx">Services</a></li>
 
         <% 
-            if (valueFromSession == "") {
+            if (valueFromSession == "")
+            {
                 Response.Write("<li><a href='Logout.aspx'>Logout</a></li>");
-            }else
+            }
+            else
             {
                 Response.Write(@"
                    
-                        <li><a href=''>**PDPA Menu**</a></li>
-                        <li><a href=''>Load</a></li>
-                        <li><a href=''>Verify</a></li>
-                        <li><a href=''>Upload</a></li>
-                        <li><a href=''>Report</a></li>
-                        <li><a href='Logout.aspx'>Logout</a></li>
+                            <li><a href=''>-------PDPA Menu-------</a></li>
+                            <li><a href='LoadData.aspx'>Load</a></li>
+                            <li><a href='View.aspx'>View</a></li>
+                            <li><a href='Report.aspx'>Report</a></li>
+                            <li><a href='Requrest.aspx'>Requrest</a></li>
+                            <li><a href='Logout.aspx'>Logout</a></li>
                 ");
             }
             
             
-             %>
+        %>
 
 
-        
-        <li> <a href="#" class="action_btn">Get Started</a></li>
+
+        <li><a href="#" class="action_btn">Get Started</a></li>
     </div>
 </nav>
